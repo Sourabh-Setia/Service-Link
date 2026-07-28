@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Frontend
+Frontend/node_modules
+Frontend/dist
+
+# Backend
+backend/node_modules
+
+# Environment Variables
+.env
+backend/.env
+Frontend/.env
+
+# Logs
+npm-debug.log*

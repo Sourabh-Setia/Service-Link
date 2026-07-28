@@ -1,0 +1,23 @@
+.word {
+  font-family: "Elms Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.nav-btn {
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Hover = blue */
+.nav-btn:hover {
+  color: blue;
+}
+
+/* Active (permanent when clicked) = red */
+.nav-btn.active {
+  color: red !important;
+}
