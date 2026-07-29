@@ -32,9 +32,13 @@ route.post("/signup", async (req,res)=>{
    res.status(201).json({
     message: "User created successfully",
   });
-    }catch (err){
-        console.error("Error " , err)
-        res.status(500).send("error in creating new profile")
+    }catch (err) {
+        console.error(err);
+    
+        res.status(500).json({
+            message: "Error creating new profile",
+            error: err.message
+        });
     }
     
 })

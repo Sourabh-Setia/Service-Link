@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -13,6 +15,8 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,11 +62,9 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "https://service-link-backend.onrender.com/users/validate/signup",
+        "http://localhost:3000/users/validate/signup",
         data
       );
-
-      alert(response.data.message || response.data || "Account created successfully!");
 
       console.log("Response:", response.data);
 
@@ -75,6 +77,15 @@ const Signup = () => {
         email: "",
         password: "",
       });
+
+      // Show success modal
+      setShowModal(true);
+
+      // Redirect after 2 seconds
+      setTimeout(() => {
+        setShowModal(false);
+        navigate("/login");
+      }, 2000);
 
     } catch (err) {
       console.error("Signup Error:", err);
@@ -169,6 +180,46 @@ const Signup = () => {
           </div>
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showModal && (
+        <div
+          className="modal fade show"
+          style={{
+            display: "block",
+            backgroundColor: "rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content rounded-4 shadow">
+              <div className="modal-body text-center p-5">
+                <div
+                  className="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-success text-white"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    fontSize: "40px",
+                  }}
+                >
+                  ✓
+                </div>
+
+                <h3 className="fw-bold text-success">
+                  Account Created!
+                </h3>
+
+                <p className="text-muted mt-3">
+                  Your account has been created successfully.
+                </p>
+
+                <small className="text-secondary">
+                  Redirecting to login...
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
