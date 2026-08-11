@@ -1,40 +1,35 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Name_of_the_app from "../other/Name_of_the_app";
+import { FiArrowRight, FiCheckCircle, FiLock, FiMail, FiShield, FiStar } from "react-icons/fi";
+import "./Auth.css";
 
 function Login_page() {
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
   const [errors, setErrors] = useState({
     email: "",
     password: "",
   });
 
-  // Handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-    setFormData({
-      ...formData,
+    setFormData((current) => ({
+      ...current,
       [name]: value,
-    });
+    }));
   };
 
-  // Validation
   const validate = () => {
-    let tempErrors = {
+    const tempErrors = {
       email: "",
       password: "",
     };
-
     let isValid = true;
 
     if (!formData.email) {
@@ -61,9 +56,8 @@ function Login_page() {
     return isValid;
   };
 
-  // Handle submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     if (!validate()) return;
 
@@ -78,18 +72,13 @@ function Login_page() {
         }
       );
 
-      console.log("Server Response:", response.data);
-
-      // Save token if backend returns one
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
       }
 
-      // Small delay for smooth transition
-      setTimeout(() => {
+      window.setTimeout(() => {
         navigate("/dashboard");
-      }, 1200);
-
+      }, 900);
     } catch (err) {
       setLoading(false);
 
@@ -98,113 +87,134 @@ function Login_page() {
       } else {
         alert("Server not reachable or network error");
       }
-
-      console.error("Error during login:", err);
     }
   };
 
   return (
-    <>
-      <div className="container">
-        <div className="row pt-5">
-          <Name_of_the_app />
-        </div>
-      </div>
+    <div className="auth-shell">
+      <div className="auth-layout">
+        <section className="auth-showcase">
+          <div className="auth-showcase-inner">
+            <div className="auth-badge">ServiceLink</div>
+            <h1>Log in and get your next service booked in minutes.</h1>
+            <p className="auth-showcase-copy">
+              Trusted providers, cleaner scheduling, and one place to manage every job around you.
+            </p>
 
-      <div className="container-sm pt-3">
-        <div className="row justify-content-center">
-          <div className="col-8 col-md-8 col-lg-5">
-            <div className="card text-center shadow-lg">
-              <div className="card-body">
-                <h5 className="card-header">
-                  Login Your Account
-                </h5>
+            <div className="auth-feature-grid">
+              <div className="auth-feature-card">
+                <span className="auth-feature-icon">
+                  <FiShield size={18} />
+                </span>
+                <div>
+                  <strong>Verified providers</strong>
+                  <small>Browse trusted professionals near you.</small>
+                </div>
               </div>
 
-              <div className="card-body">
-                <p>
+              <div className="auth-feature-card">
+                <span className="auth-feature-icon">
+                  <FiCheckCircle size={18} />
+                </span>
+                <div>
+                  <strong>Easy booking flow</strong>
+                  <small>Track chats, bookings, and history in one dashboard.</small>
+                </div>
+              </div>
+            </div>
+
+            <div className="auth-metric-row">
+              <div className="auth-metric-card">
+                <span>24/7</span>
+                <small>Booking access</small>
+              </div>
+              <div className="auth-metric-card">
+                <span>4.9/5</span>
+                <small>User satisfaction</small>
+              </div>
+              <div className="auth-metric-card">
+                <span>100+</span>
+                <small>Service categories</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="auth-panel">
+          <div className="auth-card">
+            <div className="auth-card-header">
+              <div className="auth-eyebrow">
+                <FiStar size={14} />
+                Welcome back
+              </div>
+              <h2>Sign in to your account</h2>
+              <p>Use your email and password to continue to your dashboard.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="auth-form">
+              <div className="auth-field">
+                <label htmlFor="login-email">Email address</label>
+                <div className="auth-input-wrap">
+                  <span className="auth-input-icon">
+                    <FiMail size={16} />
+                  </span>
                   <input
-                    type="text"
+                    id="login-email"
+                    type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Email"
-                    className="form-control text-center pt-2"
+                    placeholder="you@example.com"
                     disabled={loading}
                   />
+                </div>
+                {errors.email && <small className="auth-error">{errors.email}</small>}
+              </div>
 
-                  {errors.email && (
-                    <small className="text-danger">
-                      {errors.email}
-                    </small>
-                  )}
-                </p>
-
-                <p>
+              <div className="auth-field">
+                <div className="auth-label-row">
+                  <label htmlFor="login-password">Password</label>
+                  <span>Minimum 6 characters</span>
+                </div>
+                <div className="auth-input-wrap">
+                  <span className="auth-input-icon">
+                    <FiLock size={16} />
+                  </span>
                   <input
+                    id="login-password"
                     type="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    placeholder="Password"
-                    className="form-control text-center pt-2"
+                    placeholder="Enter your password"
                     disabled={loading}
                   />
-
-                  {errors.password && (
-                    <small className="text-danger">
-                      {errors.password}
-                    </small>
-                  )}
-                </p>
+                </div>
+                {errors.password && <small className="auth-error">{errors.password}</small>}
               </div>
 
-              <div className="card-footer text-body-secondary">
-                <button
-                  className="btn btn-outline-info form-control w-50"
-                  type="button"
-                  onClick={handleSubmit}
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <>
-                      <span
-                        className="spinner-border spinner-border-sm me-2"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>
-                      Logging in...
-                    </>
-                  ) : (
-                    "Submit"
-                  )}
-                </button>
+              <button className="auth-primary-btn" type="submit" disabled={loading}>
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                    Signing you in...
+                  </>
+                ) : (
+                  <>
+                    Continue to dashboard
+                    <FiArrowRight size={16} />
+                  </>
+                )}
+              </button>
+            </form>
 
-                <p className="pt-2">
-                  Don't have an account?
-                  <Link
-                    to="/signup"
-                    className="text-decoration-none text-success"
-                  >
-                    {" "}
-                    Sign up
-                  </Link>
-                </p>
-              </div>
+            <div className="auth-footer-note">
+              New to ServiceLink? <Link to="/signup">Create an account</Link>
             </div>
           </div>
-        </div>
+        </section>
       </div>
-
-      <div className="container-fluid pt-5">
-        <div className="row justify-content-center pt-2">
-          <footer className="text-center py-3">
-            <p>© 2025 Service Link. All Rights Reserved.</p>
-            <p>info@servicelink.com</p>
-          </footer>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
 

@@ -1,5 +1,342 @@
-.idk{
-    color: white;
-    background-color: black;
+.default-shell {
+  min-height: 100svh;
+  height: 100svh;
+  padding: 28px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(25, 135, 84, 0.18), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(17, 24, 39, 0.16), transparent 32%),
+    linear-gradient(135deg, #eff6f2 0%, #fafcfb 48%, #edf4ef 100%);
 }
 
+.default-layout {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  border-radius: 32px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.default-hero {
+  position: relative;
+  padding: 42px 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    linear-gradient(155deg, rgba(14, 20, 17, 0.96) 0%, rgba(23, 53, 41, 0.92) 58%, rgba(26, 110, 69, 0.86) 100%);
+  color: #fff;
+}
+
+.default-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.13), transparent 20%),
+    radial-gradient(circle at 76% 78%, rgba(154, 235, 190, 0.16), transparent 24%);
+  pointer-events: none;
+}
+
+.default-badge,
+.default-card-top {
+  position: relative;
+  z-index: 1;
+}
+
+.default-badge {
+  width: fit-content;
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.default-hero h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 14px;
+  font-size: clamp(2.25rem, 3.8vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+  max-width: 540px;
+}
+
+.default-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 0;
+  color: rgba(230, 239, 235, 0.88);
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.default-pill-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.default-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(240, 247, 243, 0.92);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.default-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7ee2ad;
+  box-shadow: 0 0 14px rgba(126, 226, 173, 0.7);
+}
+
+.default-graphic {
+  position: relative;
+  z-index: 1;
+  width: 250px;
+  height: 250px;
+  margin-top: 28px;
+}
+
+.default-orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.default-orbit-one {
+  transform: rotate(18deg);
+}
+
+.default-orbit-two {
+  inset: 24px;
+  transform: rotate(-18deg);
+  border-color: rgba(160, 237, 194, 0.22);
+}
+
+.default-core {
+  position: absolute;
+  inset: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle at top, rgba(224, 252, 236, 0.95), rgba(145, 219, 180, 0.78));
+  color: #123324;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 22px 48px rgba(6, 17, 12, 0.24);
+}
+
+.default-core span {
+  font-size: 3.5rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.default-core small {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.default-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 34px 38px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(248, 251, 249, 0.92) 100%);
+}
+
+.default-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 30px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #e5ece7;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.default-card-top {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.default-icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e9f7ef 0%, #d7f1e2 100%);
+  color: #198754;
+  flex-shrink: 0;
+}
+
+.default-card-top h2 {
+  margin: 0 0 8px;
+  color: #152019;
+  font-size: 1.85rem;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.default-card-top p {
+  margin: 0;
+  color: #67746d;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.default-link-list {
+  display: grid;
+  gap: 12px;
+}
+
+.default-link-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 22px;
+  text-decoration: none;
+  background: #fbfcfb;
+  border: 1px solid #e3ebe6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.default-link-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(25, 135, 84, 0.28);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.default-link-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #edf7f1;
+  color: #198754;
+  flex-shrink: 0;
+}
+
+.default-link-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.default-link-content strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #152019;
+  font-size: 15px;
+}
+
+.default-link-content span {
+  display: block;
+  color: #6c7872;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.default-link-arrow {
+  color: #7e8983;
+  flex-shrink: 0;
+}
+
+.default-footer-note {
+  margin-top: 18px;
+  color: #75807a;
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .default-shell {
+    height: auto;
+    overflow: visible;
+  }
+
+  .default-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .default-hero,
+  .default-panel {
+    padding: 34px;
+  }
+}
+
+@media (max-width: 767px) {
+  .default-shell {
+    height: auto;
+    padding: 14px;
+    overflow: visible;
+  }
+
+  .default-layout {
+    border-radius: 24px;
+  }
+
+  .default-hero,
+  .default-panel {
+    padding: 24px 20px;
+  }
+
+  .default-card {
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+
+  .default-card-top h2 {
+    font-size: 1.7rem;
+  }
+
+  .default-graphic {
+    width: 220px;
+    height: 220px;
+    margin-top: 28px;
+  }
+
+  .default-core {
+    inset: 42px;
+  }
+
+  .default-core span {
+    font-size: 3rem;
+  }
+}
